@@ -1,14 +1,14 @@
 import { useState } from 'react'
+import Header from './Header'
 
-function resume() {
+function Resume({ text }) {
     return (
         <>
             <div className='resume-template'>
-                AHLIE
+                <Header text={text} />
             </div>
-            
         </>
     )
 }
 
-export default resume
+export default Resume

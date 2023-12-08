@@ -1,12 +1,12 @@
 import { useState } from "react";
 import PersonalInfo from "./PersonalInfo";
 
-function ResumeForm() {
-    const [count, setCount] = useState(0)
+function ResumeForm({ value, onChange }) {
+    //const [count, setCount] = useState(0)
 
     return (
         <div className='resume-edit'>
-            <PersonalInfo />
+            <PersonalInfo value={value} onChange={onChange} />
         </div>
     )
 }
