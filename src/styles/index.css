@@ -23,15 +23,33 @@ body {
 
 #root {
   margin: 0;
-  display: flex;
+  padding: 3%;
   min-width: 100vw;
   min-height: 100vh;
-  justify-content: center;
-  align-items: center;
-  text-align: start;
   background-color: rgba(233, 233, 233, 0.8);
+  display: flex;
+  justify-content: center;
 }
 
+#app {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  text-align: start;
+  width: 100%;
+  max-width: 1500px;
+}
 
+.resume-template {
+  flex-grow: 1;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  
+}
+
+.header {
+  background-color: aqua;
+}
 
 
