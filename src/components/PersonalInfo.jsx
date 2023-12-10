@@ -1,4 +1,4 @@
-import PersonalInfoInput from "./PersonalInfoInput"
+import PersonalInfoInput from "./FormInput"
 
 function PersonalInfo({ value, onChange }) {
     return (
