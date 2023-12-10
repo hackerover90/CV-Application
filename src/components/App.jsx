@@ -1,17 +1,29 @@
 import { useState } from 'react'
 import Resume from './Resume.jsx'
-import ResumeForm from './ResumeForm.jsx'
 import '../styles/App.css'
+import PersonalInfo from './PersonalInfo.jsx'
+import Education from './Education.jsx'
 
 function App() {
-  const [text, setText] = useState("")
-  function handleChange(e) {
-    setText(e.target.value)
+  const [personalInfo, setpersonalInfo] = useState({
+    name: '',
+    email: '',
+    phoneNumber: '',
+    address: ''
+  })
+
+  function handlePersonalInfo(e) {
+    const key = e.target.dataset.key
+    setpersonalInfo({ ...personalInfo, [key]: e.target.value })
   }
+  
   return (
     <div id='app'>
-      <ResumeForm value={text} onChange={handleChange} />
-      <Resume text={text} />
+      <div id='resume-input'>
+        <PersonalInfo value={personalInfo} onChange={handlePersonalInfo} />
+        <Education />
+      </div>
+      <Resume value={personalInfo} />
     </div>
   )
 }

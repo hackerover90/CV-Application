@@ -1,11 +1,13 @@
 import { useState } from 'react'
 import Header from './Header'
+import Body from './Body'
 
-function Resume({ text }) {
+function Resume(props) {
     return (
         <>
             <div className='resume-template'>
-                <Header text={text} />
+                <Header {...props} />
+                <Body />
             </div>
         </>
     )
