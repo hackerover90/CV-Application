@@ -39,11 +39,16 @@ function App() {
     setEducations([ ...educations ])
   }
 
-  function handleEducationForm(education) {
+  function handleEducationForm(education = false) {
     if (educationFormOpen === false) {
       setEducationFormOpen(true)
     } else {
       setEducationFormOpen(false)
+      const regex = new RegExp("^\\s*$")
+      if (regex.test(education.school)) { //if school is left blank don't add education
+        console.log('ah')
+        education = false
+      }
       setEducation({
         school:'',
         degree:'',
@@ -51,7 +56,10 @@ function App() {
         end:'',
         location:''
       })
-      setEducations([ ...educations, education])
+      if (education) (
+        setEducations([ ...educations, education])
+      )
+      
     }
   }
   

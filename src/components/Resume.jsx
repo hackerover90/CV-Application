@@ -2,12 +2,12 @@ import { useState } from 'react'
 import Header from './Header'
 import Body from './Body'
 
-function Resume(props) {
+function Resume({ value, educations }) {
     return (
         <>
             <div className='resume-template'>
-                <Header {...props} />
-                <Body />
+                <Header text={value} />
+                <Body educations={educations} />
             </div>
         </>
     )

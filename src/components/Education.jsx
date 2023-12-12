@@ -15,24 +15,72 @@ function AddEducationForm({ formOpen, setFormOpen, education, handleEducation })
                 placeholder={'Enter School Name'}
                 data-key={'school'}
             />
-            <button type="button" onClick={() => setFormOpen(education)} className="btn btn-primary">Save</button>
+            <FormInput 
+                id={'degree'}
+                labelName={'Degree'}
+                type={'text'}
+                name={'degree'}
+                value={education.degree}
+                onChange={handleEducation}
+                placeholder={'Enter School Degree'}
+                data-key={'degree'}
+            />
+            <FormInput 
+                id={'start'}
+                labelName={'Start Date'}
+                type={'text'}
+                name={'start_date'}
+                value={education.start}
+                onChange={handleEducation}
+                placeholder={'Enter Start Date'}
+                data-key={'start'}
+            />
+            <FormInput 
+                id={'end'}
+                labelName={'End Date'}
+                type={'text'}
+                name={'end_date'}
+                value={education.end}
+                onChange={handleEducation}
+                placeholder={'Enter End Date'}
+                data-key={'end'}
+            />
+            <FormInput 
+                id={'location'}
+                labelName={'Location'}
+                type={'text'}
+                name={'school_location'}
+                value={education.location}
+                onChange={handleEducation}
+                placeholder={'Enter School Location'}
+                data-key={'location'}
+            />
+            <div className='d-flex gap-2'>
+                <button type="button" onClick={() => setFormOpen(education)} className="btn btn-primary">Save</button>
+                <button type="button" onClick={() => setFormOpen()} className="btn btn-secondary">Cancel</button>
+            </div>
+            
         </form>
     )
 }
 
 export default function Education({ education, handleEducation, educations, handleEducations, formOpen, setFormOpen }) {
     const displayEducation = educations.map(edu =>
-        <li key={edu.school}>{edu.school}</li>    
+        <li key={uuid()}>{edu.school}</li>    
     )
     
     return (
         <div id="education">
             <h2>Education</h2>
             {(formOpen === false) && (
-                <ul>{displayEducation}</ul>
+                <>
+                    <ul>{displayEducation}</ul>
+                    <button type="button" onClick={setFormOpen} className="btn btn-primary">Add Education</button>
+                </>
+                
             )}
             {formOpen && <AddEducationForm formOpen={formOpen} setFormOpen={setFormOpen} education={education} handleEducation={handleEducation} />}
-            <button type="button" onClick={setFormOpen} className="btn btn-primary">Add Education</button>
+            
         </div>
     )
 }

@@ -1,7 +1,6 @@
 import { useState } from "react";
 
-function Header(props) {
-    const text = props.value
+function Header({ text }) {
     return (
         <div className="resume-template-header">
             <div id="headerName">{text.name}</div>
