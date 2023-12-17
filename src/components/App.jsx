@@ -30,13 +30,31 @@ function App() {
   }
 
   function handleEducation(e) {
-    console.log(e.target.value)
-    const key = e.target.dataset.key
-    setEducation({ ...education, [key]: e.target.value })
+    let key
+    try {
+      key = e.target.dataset.key
+    } catch {
+      key = null
+    }
+    
+    
+    if (key != undefined && key != null) {
+      setEducation({ ...education, [key]: e.target.value })
+      //console.log(key)
+    } else if (key == undefined && key == null) {
+      setEducation(() => e)
+      //console.log(education)
+    }
+    
   }  
 
   function handleEducations() {
     setEducations([ ...educations ])
+  }
+
+  function removeEducation(education) {
+    let new_educations = educations.filter((edu) => edu != education)
+    setEducations(new_educations)
   }
 
   function handleEducationForm(education = false) {
@@ -56,10 +74,20 @@ function App() {
         end:'',
         location:''
       })
-      if (education) (
-        setEducations([ ...educations, education])
-      )
       
+      if (education) {
+        for (let i=0; i<educations.length; i++) {
+          /*Checks if the school name of the education thats about to be added
+          already exists and if so only updates the attributes that were updated
+          instead of adding a new education state to the educations array*/
+          if (educations[i].school == education.school) {
+            educations[i] = education
+            setEducations(educations)
+            return
+          }
+        }
+        setEducations([ ...educations, education])
+      }
     }
   }
   
@@ -74,10 +102,10 @@ function App() {
           handleEducations={handleEducations}
           formOpen={educationFormOpen} 
           setFormOpen={handleEducationForm}
-
+          removeEducation={removeEducation}
        />
       </div>
-      <Resume value={personalInfo} />
+      <Resume value={personalInfo} educations={educations} />
     </div>
   )
 }

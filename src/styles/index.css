@@ -80,3 +80,13 @@ body {
   margin-right: 10px;
   text-align: center;
 }
+
+.education {
+  list-style-type: none;
+}
+
+.school-list:hover {
+  font-weight: bold;
+  cursor: pointer;
+}
+

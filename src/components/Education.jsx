@@ -3,6 +3,8 @@ import { v4 as uuid } from 'uuid';
 
 
 function AddEducationForm({ formOpen, setFormOpen, education, handleEducation }) {
+    //console.log(education)
+    //console.log(formOpen)
     return (
         <form id="personalInfoForm" className="bg-white p-3">
             <FormInput 
@@ -64,17 +66,35 @@ function AddEducationForm({ formOpen, setFormOpen, education, handleEducation })
     )
 }
 
-export default function Education({ education, handleEducation, educations, handleEducations, formOpen, setFormOpen }) {
+export default function Education({ education, handleEducation, educations, handleEducations, formOpen, setFormOpen, removeEducation }) {
+    
+    function con(schoolName) {
+        setFormOpen()
+        education = educations.find(edu => edu.school == schoolName)
+        handleEducation(education)
+        //console.log(education)
+        return (
+            <>
+            {formOpen && <AddEducationForm formOpen={formOpen} setFormOpen={setFormOpen} education={education} handleEducation={handleEducation} />}
+            </>
+        )
+    }
+
+
+    
     const displayEducation = educations.map(edu =>
-        <li key={uuid()}>{edu.school}</li>    
+        <li key={uuid()} className='d-flex justify-content-between'>
+            <div onClick={() => con(edu.school)} className='school-list'>{edu.school}</div>
+            <button type="button" onClick={() => removeEducation(edu)} className="btn-close" aria-label="Close"></button>
+        </li>    
     )
     
     return (
         <div id="education">
-            <h2>Education</h2>
+            
             {(formOpen === false) && (
                 <>
-                    <ul>{displayEducation}</ul>
+                    <ul className='education'>{displayEducation}</ul>
                     <button type="button" onClick={setFormOpen} className="btn btn-primary">Add Education</button>
                 </>
                 
