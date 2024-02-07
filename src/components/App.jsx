@@ -3,51 +3,59 @@ import Resume from './Resume.jsx'
 import '../styles/App.css'
 import PersonalInfo from './PersonalInfo.jsx'
 import Education from './Education.jsx'
+import WorkExperiance from './WorkExperiance.jsx'
 
 function App() {
   const [personalInfo, setpersonalInfo] = useState({
-    name: '',
-    email: '',
-    phoneNumber: '',
-    address: ''
+    name: 'Isaac Noori',
+    email: 'isaac_noori@outlook.com',
+    phoneNumber: '6476677674',
+    address: '386 Alfred St'
   })
-  
   const [education, setEducation] = useState({
-      school:'',
-      degree:'',
-      start:'',
-      end:'',
-      location:''
+    school:"Queen's University",
+    degree:'Computing',
+    start:'Sept 2019',
+    end:'May 2020',
+    location:'Kingston, ON'
   })
-
-  const [educations, setEducations] = useState([])
-
+  const [educations, setEducations] = useState([education])
   const [educationFormOpen, setEducationFormOpen] = useState(false)
+  const [experience, setExperience] = useState({
+    companyName:'Nuevo',
+    position:'Assembler',
+    start:'May 2022',
+    end:'Aug 2022',
+    location:'Aurora, ON',
+    description:'Assembled furniture like a G'
+  })
+  const [experiences, setExperiences] = useState([experience])
+  const [experienceFormOpen, setExperienceFormOpen] = useState(false)
 
   function handlePersonalInfo(e) {
     const key = e.target.dataset.key
     setpersonalInfo({ ...personalInfo, [key]: e.target.value })
   }
 
-  function handleEducation(e) {
+  function handleEducation(edu) {
     let key
     try {
-      key = e.target.dataset.key
+      key = edu.target.dataset.key
     } catch {
       key = null
     }
     
-    
     if (key != undefined && key != null) {
-      setEducation({ ...education, [key]: e.target.value })
+      setEducation({ ...education, [key]: edu.target.value })
       //console.log(key)
-    } else if (key == undefined && key == null) {
-      setEducation(() => e)
+    } else if (key == undefined || key == null) {
+      setEducation(() => edu)
       //console.log(education)
     }
     
   }  
 
+  //this function is never used
   function handleEducations() {
     setEducations([ ...educations ])
   }
@@ -63,10 +71,17 @@ function App() {
     } else {
       setEducationFormOpen(false)
       const regex = new RegExp("^\\s*$")
-      if (regex.test(education.school)) { //if school is left blank don't add education
-        console.log('ah')
+      /*
+      if school is left blank don't add education
+      */
+      if (regex.test(education.school)) {
+        //console.log('ah')
         education = false
       }
+
+      /*
+      This enables the form to reset all inputs upon save or cancellation
+      */
       setEducation({
         school:'',
         degree:'',
@@ -75,6 +90,10 @@ function App() {
         location:''
       })
       
+      /*
+      if education is not defined false by above process then add education object
+      to educations array
+      */ 
       if (education) {
         for (let i=0; i<educations.length; i++) {
           /*Checks if the school name of the education thats about to be added
@@ -96,13 +115,15 @@ function App() {
       <div id='resume-input'>
         <PersonalInfo value={personalInfo} onChange={handlePersonalInfo} />
         <Education 
-          education={education}
-          handleEducation={handleEducation}
-          educations={educations}
-          handleEducations={handleEducations}
-          formOpen={educationFormOpen} 
-          setFormOpen={handleEducationForm}
+          education={education} handleEducation={handleEducation}
+          educations={educations} handleEducations={handleEducations}
+          formOpen={educationFormOpen} setFormOpen={handleEducationForm}
           removeEducation={removeEducation}
+       />
+       <WorkExperiance
+          experience={experience}
+          experiences={experiences}
+          experienceFormOpen={experienceFormOpen}
        />
       </div>
       <Resume value={personalInfo} educations={educations} />

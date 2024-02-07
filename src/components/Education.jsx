@@ -68,9 +68,16 @@ function AddEducationForm({ formOpen, setFormOpen, education, handleEducation })
 
 export default function Education({ education, handleEducation, educations, handleEducations, formOpen, setFormOpen, removeEducation }) {
     
-    function con(schoolName) {
+    /*
+    Displays form of selected school with prior info filled in 
+    ***
+    1. Find specific education object in educations array
+    2. Use found object info to update education state
+    3. Updated education state is passed on to AddEducationForm component
+    */
+    function educationForm(schoolName) {
         setFormOpen()
-        education = educations.find(edu => edu.school == schoolName)
+        education = educations.find(edu => edu.school == schoolName) 
         handleEducation(education)
         //console.log(education)
         return (
@@ -81,10 +88,11 @@ export default function Education({ education, handleEducation, educations, hand
     }
 
 
-    
+    //displays list of educations with delete button
+    //can click each education and form with education info will open
     const displayEducation = educations.map(edu =>
         <li key={uuid()} className='d-flex justify-content-between'>
-            <div onClick={() => con(edu.school)} className='school-list'>{edu.school}</div>
+            <div onClick={() => educationForm(edu.school)} className='school-list'>{edu.school}</div>
             <button type="button" onClick={() => removeEducation(edu)} className="btn-close" aria-label="Close"></button>
         </li>    
     )

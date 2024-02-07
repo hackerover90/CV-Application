@@ -5,11 +5,11 @@ function Body({ educations }) {
     const displayEducations = educations.map((edu) => {
         return (
             <div key={uuid()} className='row mb-3'>
-                <div className='col-4 d-flex flex-column'>
+                <div className='col-6 d-flex flex-column'>
                     <div>{edu.start} - {edu.end}</div>
                     <div>{edu.location}</div>
                 </div>
-                <div className='col-8 d-flex flex-column'>
+                <div className='col-6 d-flex flex-column'>
                     <div className='fw-bold'>{edu.school}</div>
                     <div>{edu.degree}</div>
                 </div>
