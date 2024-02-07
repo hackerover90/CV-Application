@@ -1,7 +1,7 @@
 import FormInput from './FormInput'
 import { v4 as uuid } from 'uuid';
 
-function AddExperienceForm({ experienceFormOpen, setExperienceFormOpen, experience, handleExperience }) {
+function AddExperienceForm({ setExperienceFormOpen, experience, handleExperience }) {
     //console.log(education)
     //console.log(formOpen)
     return (
@@ -107,8 +107,8 @@ export default function Experience({ experience, handleExperience, experiences, 
     )
     
     return (
-        <div id="education">
-            
+        <div id="experience">
+            <h2>Experiences</h2>
             {(experienceFormOpen === false) && (
                 <>
                     <ul className='experiences'>{displayExperiences}</ul>
@@ -116,7 +116,7 @@ export default function Experience({ experience, handleExperience, experiences, 
                 </>
                 
             )}
-            {experienceFormOpen && <AddExperienceForm experienceFormOpen={experienceFormOpen} setExperienceFormOpen={setExperienceFormOpen} experience={experience} handleExperience={handleExperience} />}
+            {experienceFormOpen && <AddExperienceForm setExperienceFormOpen={setExperienceFormOpen} experience={experience} handleExperience={handleExperience} />}
             
         </div>
     )

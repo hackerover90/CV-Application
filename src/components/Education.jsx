@@ -2,7 +2,7 @@ import FormInput from './FormInput'
 import { v4 as uuid } from 'uuid';
 
 
-function AddEducationForm({ formOpen, setFormOpen, education, handleEducation }) {
+function AddEducationForm({ setFormOpen, education, handleEducation }) {
     //console.log(education)
     //console.log(formOpen)
     return (
@@ -66,7 +66,7 @@ function AddEducationForm({ formOpen, setFormOpen, education, handleEducation })
     )
 }
 
-export default function Education({ education, handleEducation, educations, handleEducations, formOpen, setFormOpen, removeEducation }) {
+export default function Education({ education, handleEducation, educations, formOpen, setFormOpen, removeEducation }) {
     
     /*
     Displays form of selected school with prior info filled in 
@@ -99,7 +99,7 @@ export default function Education({ education, handleEducation, educations, hand
     
     return (
         <div id="education">
-            
+            <h2>Education</h2>
             {(formOpen === false) && (
                 <>
                     <ul className='education'>{displayEducation}</ul>
@@ -107,7 +107,7 @@ export default function Education({ education, handleEducation, educations, hand
                 </>
                 
             )}
-            {formOpen && <AddEducationForm formOpen={formOpen} setFormOpen={setFormOpen} education={education} handleEducation={handleEducation} />}
+            {formOpen && <AddEducationForm setFormOpen={setFormOpen} education={education} handleEducation={handleEducation} />}
             
         </div>
     )

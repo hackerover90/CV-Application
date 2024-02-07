@@ -56,11 +56,11 @@ body {
 }
 
 .resume-template-header {
-  background-color: aqua;
+  background-color: rgb(123, 128, 128);
 }
 
 .resume-template-body {
-  background-color: white;
+  background-color: rgb(209, 208, 208);
 }
 
 #headerInfo {
@@ -81,7 +81,7 @@ body {
   text-align: center;
 }
 
-.education {
+#education {
   list-style-type: none;
 }
 
@@ -90,3 +90,7 @@ body {
   cursor: pointer;
 }
 
+.experiences-list:hover {
+  font-weight: bold;
+  cursor: pointer;
+}

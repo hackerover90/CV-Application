@@ -74,11 +74,6 @@ function App() {
     
   }  
 
-  //this function is never used
-  function handleEducations() {
-    setEducations([ ...educations ])
-  }
-
   function removeEducation(education) {
     let new_educations = educations.filter((edu) => edu != education)
     setEducations(new_educations)
@@ -90,6 +85,16 @@ function App() {
   }
 
   function handleEducationForm(education = false) {
+    /*
+    This enables the form to reset all inputs upon save or cancellation
+    */
+    setEducation({
+      school:'',
+      degree:'',
+      start:'',
+      end:'',
+      location:''
+    })
     if (educationFormOpen === false) {
       setEducationFormOpen(true)
     } else {
@@ -103,17 +108,6 @@ function App() {
         education = false
       }
 
-      /*
-      This enables the form to reset all inputs upon save or cancellation
-      */
-      setEducation({
-        school:'',
-        degree:'',
-        start:'',
-        end:'',
-        location:''
-      })
-      
       /*
       if education is not defined false by above process then add education object
       to educations array
@@ -135,6 +129,17 @@ function App() {
   }
 
   function handleExperienceForm(experience = false) {
+    /*
+    This enables the form to reset all inputs upon save or cancellation
+    */
+    setExperience({
+      companyName:'',
+      position:'',
+      start:'',
+      end:'',
+      location:'',
+      description:''
+    })
     if (experienceFormOpen === false) {
       setExperienceFormOpen(true)
     } else {
@@ -147,18 +152,6 @@ function App() {
         //console.log('ah')
         experience = false
       }
-
-      /*
-      This enables the form to reset all inputs upon save or cancellation
-      */
-      setExperience({
-        companyName:'',
-        position:'',
-        start:'',
-        end:'',
-        location:'',
-        description:''
-      })
       
       /*
       if education is not defined false by above process then add education object
@@ -186,7 +179,7 @@ function App() {
         <PersonalInfo value={personalInfo} onChange={handlePersonalInfo} />
         <Education 
           education={education} handleEducation={handleEducation}
-          educations={educations} handleEducations={handleEducations}
+          educations={educations}
           formOpen={educationFormOpen} setFormOpen={handleEducationForm}
           removeEducation={removeEducation}
        />
